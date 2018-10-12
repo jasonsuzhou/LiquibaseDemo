@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+	<include file="classpath:/db/changelog/create_table.sql"/>
+	<changeSet id="1" author="jason">
+		<sql>
+		alter table t_user add column age int(4) default 0;
+		</sql>
+	</changeSet>
+	<changeSet id="2" author="jason">
+		<sql>
+		alter table t_user add column name varchar(32) default '';
+		</sql>
+	</changeSet>
+	<include file="classpath:/db/changelog/create_index.xml"/>
+</databaseChangeLog>
