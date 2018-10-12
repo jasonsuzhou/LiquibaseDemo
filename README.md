@@ -10,3 +10,7 @@ before you want to add new sql in the same sql file, you need add below 1 commen
 ```
 --changeset <author>:<version>
 ```
+
+踩过的坑
+
+pom没有加jpa的依赖导致liquibase老是不执行，需要配置引入jpa依赖和jpa配置
