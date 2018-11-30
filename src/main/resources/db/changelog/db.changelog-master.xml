@@ -7,11 +7,21 @@
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 	<include file="classpath:/db/changelog/create_table.sql"/>
 	<changeSet id="1" author="jason">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="t_user" columnName="age"/>
+			</not>
+		</preConditions>
 		<sql>
 		alter table t_user add column age int(4) default 0;
 		</sql>
 	</changeSet>
 	<changeSet id="2" author="jason">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="t_user" columnName="name"/>
+			</not>
+		</preConditions>
 		<sql>
 		alter table t_user add column name varchar(32) default '';
 		</sql>
