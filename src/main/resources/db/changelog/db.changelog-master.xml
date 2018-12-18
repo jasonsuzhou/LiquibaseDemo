@@ -12,6 +12,7 @@
 				<columnExists tableName="t_user" columnName="age"/>
 			</not>
 		</preConditions>
+		<comment>这个节点一定是写在preCondition节点之后的</comment>
 		<sql>
 		alter table t_user add column age int(4) default 0;
 		</sql>
@@ -27,4 +28,14 @@
 		</sql>
 	</changeSet>
 	<include file="classpath:/db/changelog/create_index.xml"/>
+	<changeSet id="4" author="jason">
+		<preConditions onFail="MARK_RAN">
+			<sqlCheck expectedResult="0">select count(*) from t_user where id = 1</sqlCheck>
+		</preConditions>
+		<comment>通过给定的sql来确定是否需要执行sql标签里的内容</comment>
+		<sql>
+			insert into t_user (id, age) values (1, 11);
+		</sql>
+	</changeSet>
+	<include file="classpath:/db/changelog/create_table.xml"/>
 </databaseChangeLog>

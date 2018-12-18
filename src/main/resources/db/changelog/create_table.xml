@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+	<changeSet id="5" author="jason">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="t_phone_section"/>
+			</not>
+		</preConditions>
+		<comment>创建表之前先检查表存在不存在，不存在才创建</comment>
+		<sql>
+			create table t_phone_owner(
+				id int(11) not null primary key auto_increment,
+				section varchar(7) not null DEFAULT '' COMMENT '号码段',
+				province varchar(16) not null DEFAULT '' COMMENT '省份',
+				city varchar(16) not null DEFAULT '' COMMENT '城市'
+				);
+		</sql>
+	</changeSet>
+</databaseChangeLog>
